@@ -15,14 +15,15 @@ def short_URL(long_url):
     driver.execute_script("window.history.go(-1);")
     cookie = driver.get_cookie('anon_shortlinks')
     driver.close()   
-    print("Shortened URL: " + cookie['value'])    
+    return str(cookie['value'])    
 
 def main():
     long_url = str(input("Enter Long URL: "))
     if long_url[long_url.find("bit.ly"):14] == "bit.ly":
         print("URL is already shortened!")
-    else:       
-        short_URL(long_url)
+    else:
+        sh_url = short_URL(long_url)
+        print("Shortened  URL: " + sh_url[8:len(sh_url)])       
                  
 if __name__ == "__main__":
     main()
